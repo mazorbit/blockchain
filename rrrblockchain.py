@@ -1,15 +1,5 @@
 from rich.console import Console
-
-class Block:
-    """
-    Block: Combination of information
-    """
-
-    def __init__(self, data):
-        self.data = data
-
-    def __repr__(self):
-        return f"Block - data: {self.data}"
+from rrrblock import Block
 
 class Blockchain:
     """
@@ -26,9 +16,17 @@ class Blockchain:
     def add_block(self, data):
         self.chain.append(Block(data))
 
-bc = Blockchain()
+def main():
+    bc = Blockchain()
 
-bc.add_block("one")
-bc.add_block("two")
+    bc.add_block("one")
+    bc.add_block("two")
 
-bc.con.print(bc.chain)
+    bc.con.print(bc)
+
+    print(f"bc.py.__name__: {__name__}")
+
+if __name__ == "__main__":
+    main()
+
+
