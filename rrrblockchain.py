@@ -1,28 +1,27 @@
-from rich.console import Console
-from rrrblock import Block
+from rich import print
+from rrrblock import RrrBlock
 
-class Blockchain:
+class RrrBlockchain:
     """
-    Blockchain: Distributed ledger of blocks
+    RrrBlockchain: Distributed ledger of blocks
     """
 
     def __init__(self):
         self.chain = []
-        self.con = Console()
 
     def __repr__(self):
-        return f"Blockchain: {self.chain}"
+        return f"RrrBlockchain: {self.chain}"
 
     def add_block(self, data):
-        self.chain.append(Block(data))
+        self.chain.append(RrrBlock(data))
 
 def main():
-    bc = Blockchain()
+    bc = RrrBlockchain()
 
     bc.add_block("one")
     bc.add_block("two")
 
-    bc.con.print(bc)
+    print(bc)
 
     print(f"bc.py.__name__: {__name__}")
 
