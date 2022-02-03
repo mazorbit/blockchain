@@ -1,22 +1,6 @@
 import time
 from rich import print
 
-def mine_block(last_block, data):
-    """
-    Mine a block based on given last_block and data.
-    """
-    timestamp = time.time_ns()
-    last_hash = last_block.hash
-    hash = f"{timestamp}-{last_hash}"
-
-    return RrrBlock(timestamp, last_hash, hash, data)
-
-def genesis():
-    """
-    Generate the genesis block.
-    """
-    return RrrBlock(time.time_ns(), "None", "genesis_hash", "This is all father of blocks")
-
 class RrrBlock:
     """
     RrrBlock: Combination of information
@@ -37,11 +21,29 @@ class RrrBlock:
             f'data: {self.data} )'
         )
 
+    @staticmethod
+    def mine_block(last_block, data):
+        """
+        Mine a block based on given last_block and data.
+        """
+        timestamp = time.time_ns()
+        last_hash = last_block.hash
+        hash = f"{timestamp}-{last_hash}"
+
+        return RrrBlock(timestamp, last_hash, hash, data)
+
+    @staticmethod
+    def genesis():
+        """
+        Generate the genesis block.
+        """
+        return RrrBlock(time.time_ns(), "None", "genesis_hash", "This is all father of blocks")
+
 def main():
-    gen_block = genesis()
-    block2 = mine_block(gen_block, '2nd block')
-    block3 = mine_block(block2, '3rd block')
-    block4 = mine_block(block3, '4th block')
+    gen_block = RrrBlock.genesis()
+    block2 = RrrBlock.mine_block(gen_block, '2nd block')
+    block3 = RrrBlock.mine_block(block2, '3rd block')
+    block4 = RrrBlock.mine_block(block3, '4th block')
     
     print(gen_block)
     print(block2)
