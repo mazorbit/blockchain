@@ -15,23 +15,6 @@ class RrrBlockchain:
     def add_block(self, data):
         self.chain.append(RrrBlock(data))
 
-    def mine_block(last_block, data):
-        """
-        Mine a block based on given last_block and data.
-        """
-        timestamp = time.time_ns()
-        last_hash = last_block.hash
-        hash = f"{timestamp}-{last_hash}"
-
-        return RrrBlock(timestamp, last_hash, hash, data)
-
-    def genesis():
-        """
-        Generate the genesis block.
-        """
-        return RrrBlock(time.time_ns(), "None", "genesis_hash", "This is all father of blocks")
-
-
 def main():
     bc = RrrBlockchain()
 
