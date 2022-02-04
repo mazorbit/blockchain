@@ -1,5 +1,7 @@
+from os import times
 import time
 from rich import print
+from crypto_hash import crypto_hash
 
 class RrrBlock:
     """
@@ -28,27 +30,25 @@ class RrrBlock:
         """
         timestamp = time.time_ns()
         last_hash = last_block.hash
-        hash = f"{timestamp}-{last_hash}"
+        hash = crypto_hash(timestamp, last_hash)
 
         return RrrBlock(timestamp, last_hash, hash, data)
 
     @staticmethod
-    def genesis():
+    def create_genesis_block():
         """
-        Generate the genesis block.
+        Creating the genesis block.
         """
         return RrrBlock(time.time_ns(), "None", "genesis_hash", "This is all father of blocks")
 
 def main():
-    gen_block = RrrBlock.genesis()
+    gen_block = RrrBlock.create_genesis_block()
     block2 = RrrBlock.mine_block(gen_block, '2nd block')
     block3 = RrrBlock.mine_block(block2, '3rd block')
-    block4 = RrrBlock.mine_block(block3, '4th block')
     
     print(gen_block)
     print(block2)
     print(block3)
-    print(block4)
 
 if __name__ == "__main__":
     main()

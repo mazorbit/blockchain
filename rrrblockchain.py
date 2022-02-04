@@ -1,5 +1,5 @@
 from rich import print
-from rrrblock import RrrBlock, mine_block, genesis
+from rrrblock import RrrBlock
 
 class RrrBlockchain:
     """
@@ -7,19 +7,19 @@ class RrrBlockchain:
     """
 
     def __init__(self):
-        self.chain = [genesis()]
+        self.chain = [RrrBlock.create_genesis_block()]
 
     def __repr__(self):
         return f"RrrBlockchain: {self.chain}"
 
     def add_block(self, data):
-        self.chain.append(RrrBlock(data))
+        self.chain.append(RrrBlock.mine_block(self.chain[-1], data))
 
 def main():
     bc = RrrBlockchain()
 
-    # bc.add_block("one")
-    # bc.add_block("two")
+    bc.add_block("one")
+    bc.add_block("two")
 
     print(bc)
 
