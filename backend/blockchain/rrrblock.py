@@ -1,7 +1,7 @@
 from os import times
 import time
 from rich import print
-from crypto_hash import crypto_hash
+from backend.util.crypto_hash import crypto_hash
 
 class RrrBlock:
     """

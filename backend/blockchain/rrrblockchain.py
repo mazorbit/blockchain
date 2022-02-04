@@ -1,5 +1,5 @@
 from rich import print
-from rrrblock import RrrBlock
+from backend.blockchain.rrrblock import RrrBlock
 
 class RrrBlockchain:
     """
